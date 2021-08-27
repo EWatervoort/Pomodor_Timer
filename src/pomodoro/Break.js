@@ -3,10 +3,13 @@ import { minutesToDuration } from "../utils/duration";
 
 // Added the ability to change the break duration in 1 minute increments with a maximum of 15min and a minimum of 1min
 const Break = ({breakDuration, setBreakDuration, disable}) => {
-  const handleBreakDuration = (event) => {
-    if (breakDuration >= 2 && event.target.dataset.testid === "decrease-break") {
+  const handleBreakDecrease = () => {
+    if (breakDuration >= 2) {
       setBreakDuration((currentCount) => currentCount-1);
-    } else if (breakDuration <= 14 && event.target.dataset.testid === "increase-break") {
+    };
+  };
+   const handleBreakIncrease = () => {
+     if (breakDuration <= 14) {
       setBreakDuration((currentCount) => currentCount+1)
     };
   };
@@ -21,7 +24,7 @@ const Break = ({breakDuration, setBreakDuration, disable}) => {
       <div className="input-group-append">
         {/*Implemented decreasing break duration and disable during a focus or break session*/}
         <button
-          onClick = {handleBreakDuration}
+          onClick = {handleBreakDecrease}
           type="button"
           className="btn btn-secondary"
           data-testid="decrease-break"
@@ -31,7 +34,7 @@ const Break = ({breakDuration, setBreakDuration, disable}) => {
         </button>
         {/*Implemented increasing break duration and disable during a focus or break session*/}
         <button
-          onClick={handleBreakDuration}
+          onClick={handleBreakIncrease}
           type="button"
           className="btn btn-secondary"
           data-testid="increase-break"

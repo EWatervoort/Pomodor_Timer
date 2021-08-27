@@ -3,10 +3,14 @@ import { minutesToDuration } from "../utils/duration";
 
 // Adding the ability to change the focus duration in increments of 5 with a maximum of 60min and a minimum of 5min
 const Focus = ({focusDuration, setFocusDuration, disable}) => {
-  const handleFocusDuration = (event) => {
-    if (focusDuration >= 10 && event.target.dataset.testid === "decrease-focus") {
+  const handleFocusDecrease = () => {
+    if (focusDuration >= 10) {
       setFocusDuration((currentCount) => currentCount-5);
-    } else if (focusDuration <= 55 && event.target.dataset.testid === "increase-focus") {
+    };
+  };
+
+  const handleFocusIncrease = () => {
+    if (focusDuration <= 55) {
       setFocusDuration((currentCount) => currentCount + 5);
     };
   };
@@ -18,7 +22,7 @@ const Focus = ({focusDuration, setFocusDuration, disable}) => {
     </span>
     <div className="input-group-append">
       <button
-        onClick = {handleFocusDuration}
+        onClick = {handleFocusDecrease}
         type="button"
         className="btn btn-secondary"
         data-testid="decrease-focus"
@@ -27,7 +31,7 @@ const Focus = ({focusDuration, setFocusDuration, disable}) => {
         <span className="oi oi-minus" />
       </button>
       <button
-        onClick = {handleFocusDuration}
+        onClick = {handleFocusIncrease}
         type="button"
         className="btn btn-secondary"
         data-testid="increase-focus"
